@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "cloudinary_storage",
     "django.contrib.staticfiles",
     "cloudinary",
+    "drf_api.profiles",
 ]
 
 MIDDLEWARE = [
