@@ -3,16 +3,16 @@ from .models import Like
 from rest_framework import serializers
 
 
-class LikeSerializer(serializers.Serializer):
+class LikeSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source="owner.username")
 
     class Meta:
         model = Like
         fields = [
             "id",
+            "created_at",
             "owner",
             "post",
-            "created_at",
         ]
 
     def create(self, validated_data):
