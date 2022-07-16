@@ -23,4 +23,5 @@ urlpatterns = [
     path("", include("drf_api.posts.urls")),
     path("", include("drf_api.comments.urls")),
     path("", include("drf_api.likes.urls")),
+    path("", include("drf_api.followers.urls")),
 ]
