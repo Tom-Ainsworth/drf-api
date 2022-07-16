@@ -1,7 +1,4 @@
-from django.http import Http404
-from rest_framework import status, generics, permissions
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import generics
 from .models import Profile
 from .serializers import ProfileSerializer
 from drf_api.permissions import IsOwnerOrReadOnly
