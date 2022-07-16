@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "cloudinary",
     "rest_framework",
     "drf_api.comments",
+    "drf_api.followers",
     "drf_api.likes",
     "drf_api.posts",
     "drf_api.profiles",
