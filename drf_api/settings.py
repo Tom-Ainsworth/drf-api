@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "cloudinary",
     "rest_framework",
+    "drf_api.comments",
     "drf_api.posts",
     "drf_api.profiles",
 ]

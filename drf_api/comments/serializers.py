@@ -1,10 +1,11 @@
+from .models import Comment
 from rest_framework import serializers
-from .models import Post
 
 
-class PostSerializer(serializers.ModelSerializer):
+class CommentSerializer(serializers.ModelSerializer):
     """
-    Serializer for the Post mode
+    Serializer for the Comment model
+    Adds three extra fields when returning a list of Comment instances
     """
 
     owner = serializers.ReadOnlyField(source="owner.username")
@@ -12,31 +13,29 @@ class PostSerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source="owner.profile.id")
     profile_image = serializers.ReadOnlyField(source="owner.profile.image.url")
 
-    def validate_image(self, value):
-        if value.size > 2 * 1024 * 1024:
-            raise serializers.ValidationError("Image size larger than 2MB!")
-        if value.image.height > 4096:
-            raise serializers.ValidationError("Image height larger than 4096px!")
-        if value.image.width > 4096:
-            raise serializers.ValidationError("Image width larger than 4096px!")
-        return value
-
     def get_is_owner(self, obj):
         request = self.context["request"]
         return request.user == obj.owner
 
     class Meta:
-        model = Post
+        model = Comment
         fields = [
             "id",
             "owner",
             "is_owner",
             "profile_id",
             "profile_image",
+            "post",
             "created_at",
             "updated_at",
-            "title",
             "content",
-            "image",
-            "image_filter",
         ]
+
+
+class CommentDetailSerializer(CommentSerializer):
+    """
+    `Serializer` for the Comment model used in Detail view
+    Post is a read only field so that we don't have to set it on each update
+    """
+
+    post = serializers.ReadOnlyField(source="post.id")
