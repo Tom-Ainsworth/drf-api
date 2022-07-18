@@ -1,4 +1,3 @@
-from math import dist
 from rest_framework import generics, filters
 from .models import Profile
 from .serializers import ProfileSerializer
