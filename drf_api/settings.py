@@ -68,7 +68,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEVELOPMENT")
 
 ALLOWED_HOSTS = [
-    os.getenv("ALLOWED_HOST"),
+    "moments-api-tom.herokuapp.com",
     "127.0.0.1",
 ]
 
