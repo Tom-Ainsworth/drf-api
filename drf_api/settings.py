@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
 
 load_dotenv()
 
@@ -49,6 +50,7 @@ REST_USE_JWT = True
 JWT_AUTH_SECURE = True
 JWT_AUTH_COOKIE = "my-app-auth"
 JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
+JWT_AUTH_SAMESITE = "None"
 
 REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "drf_api.serializers.UserDetailsSerializer"
@@ -63,10 +65,19 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEVELOPMENT")
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = [
+    "moments-api-tom.herokuapp.com",
+    "127.0.0.1",
+]
 
+if "CLIENT_ORIGIN" in os.environ:
+    CORS_ALLOWED_ORIGINS = [os.getenv("CLIENT_ORIGIN")]
+else:
+    CORS_ALLOWED_ORIGIN_REGEXES = ["http://127.0.0./"]
+
+CORS_ALLLOW_CREDENTIALS = True
 
 # Application definition
 
@@ -88,6 +99,7 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "dj_rest_auth.registration",
+    "corsheaders",
     "drf_api.comments",
     "drf_api.followers",
     "drf_api.likes",
@@ -98,6 +110,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -136,6 +149,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
+    if os.getenv("DEVELOPMENT")
+    else dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
 
 
