@@ -72,13 +72,20 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://moments-api-tom.herokuapp.com",
+    "http://127.0.0.1:8000",
+    "https://moments-react-tom.herokuapp.com",
+    "http://localhost:3000",
+]
 
-if "CLIENT_ORIGIN" in os.environ:
-    CORS_ALLOWED_ORIGINS = [os.getenv("CLIENT_ORIGIN")]
+# CORS_ALLOW_ALL_ORIGINS = True
 
-if "CLIENT_ORIGIN_DEV" in os.environ:
-    CORS_ALLOWED_ORIGINS = [os.getenv("CLIENT_ORIGIN_DEV")]
+# if "CLIENT_ORIGIN" in os.environ:
+#     CORS_ALLOWED_ORIGINS = [os.getenv("CLIENT_ORIGIN")]
+
+# if "CLIENT_ORIGIN_DEV" in os.environ:
+#     CORS_ALLOWED_ORIGINS = [os.getenv("CLIENT_ORIGIN_DEV")]
 
 
 CORS_ALLLOW_CREDENTIALS = True
@@ -153,7 +160,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
-    if os.getenv("DEVELOPMENT")
+    if os.getenv("DEV")
     else dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
 
