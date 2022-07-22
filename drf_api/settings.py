@@ -31,7 +31,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         (
             "rest_framework.authentication.SessionAuthentication"
-            if os.getenv("DEVELOPMENT")
+            if os.getenv("DEV")
             else "dj_rest_auth.jwt_auth.JWTCookieAuthentication"
         )
     ],
@@ -40,7 +40,7 @@ REST_FRAMEWORK = {
     "DATETIME_FORMAT": "%d %b %Y",
 }
 
-if not os.getenv("DEVELOPMENT"):
+if "DEV" not in os.environ:
     REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
         "rest_framework.renderers.JSONRenderer",
     ]
@@ -65,7 +65,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEVELOPMENT")
+DEBUG = os.getenv("DEV")
 
 ALLOWED_HOSTS = [
     "moments-api-tom.herokuapp.com",
