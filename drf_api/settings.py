@@ -72,6 +72,10 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+]
+
 if "CLIENT_ORIGIN" in os.environ:
     CORS_ALLOWED_ORIGINS = [os.getenv("CLIENT_ORIGIN")]
 else:
