@@ -73,9 +73,7 @@ ALLOWED_HOSTS = [
 ]
 
 if "CLIENT_ORIGIN" in os.environ:
-    CORS_ALLOWED_ORIGINS = [os.getenv("CLIENT_ORIGIN")]
-else:
-    CORS_ALLOWED_ORIGIN_REGEXES = ["http://127.0.0./"]
+    CORS_ALLOWED_ORIGINS = [os.getenv("CLIENT_ORIGIN"), "http://localhost:3000"]
 
 CORS_ALLLOW_CREDENTIALS = True
 
