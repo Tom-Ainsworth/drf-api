@@ -72,7 +72,6 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
 ]
 
-CORS_ALLOW_ALL_ORIGINS: True
 
 # CORS_ALLOWED_ORIGINS = [
 #     "https://moments-api-tom.herokuapp.com",
@@ -81,11 +80,11 @@ CORS_ALLOW_ALL_ORIGINS: True
 #     "http://localhost:3000",
 # ]
 
-# if "CLIENT_ORIGIN" in os.environ:
-#     CORS_ALLOWED_ORIGINS = [os.getenv("CLIENT_ORIGIN")]
+if "CLIENT_ORIGIN" in os.environ:
+    CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
 
-# if "CLIENT_ORIGIN_DEV" in os.environ:
-#     CORS_ALLOWED_ORIGINS = [os.getenv("CLIENT_ORIGIN_DEV")]
+if "CLIENT_ORIGIN_DEV" in os.environ:
+    CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN_DEV")]
 
 
 CORS_ALLLOW_CREDENTIALS = True
