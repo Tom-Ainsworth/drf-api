@@ -74,12 +74,14 @@ ALLOWED_HOSTS = [
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://moments-api-tom.herokuapp.com",
-    "http://127.0.0.1:8000",
     "https://moments-react-tom.herokuapp.com",
     "https://localhost:3000",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://moments-react-tom.herokuapp.com",
+    "https://localhost:3000",
+]
 # if "CLIENT_ORIGIN" in os.environ:
 #     CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
 
