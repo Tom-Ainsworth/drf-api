@@ -32,7 +32,7 @@ class Post(models.Model):
     content = models.TextField(blank=True)
     image = models.ImageField(
         upload_to="images/",
-        default="../https://res.cloudinary.com/tomzablade/image/upload/v1657475564/default_post_q8rncs.jpg",
+        default="../default_post_q8rncs.jpg",
         blank=True,
     )
 
